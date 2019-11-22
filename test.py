@@ -1,22 +1,17 @@
+import pandas as pd
 import numpy as np
+import sklearn
+from sklearn import linear_model
+from sklearn.utils import shuffle
 
-class NeuralNetwork:
-	def __init__(self, x, y):
-		self.input = x
-		self.weights1 = np.random.rand(self.input.shape[1], 4)
-		self.weights2 = np.random.rand(4,1)
-		self.y = y
-		self.output = np.zeros(self.y.shape)
 
-	def feedforward(self):
-		self.layer1 = sigmoid(np.dot(self.input, self.weights1))
-		self.output = sigmoid(np.dot(self.layer1, self.weights2))
+data = pd.read_csv("student-mat.csv", sep=';')
 
-	def backprop(self):
-		d_weights2 = np.dot(self.layer1.T, (2*(self.y - self.output) * sigmoid_derivative(self.output)))
-		d_weights1 = np.dot(self.input.T, (np.dot(2 * (self.y - self.output) * sigmoid_derivative(self.output), self.weights2.T) * sigmoid_derivative(self.layer1)))
+data = data[["G1", "G2", "G3", "studytime", "failures", "absences"]]
 
-		self.weights1 += d_weights1
-		self.weights2 += d_weights2
+predict = "G3"
 
-		
+x = np.array(data.drop(["predict"], 1))
+y = np.array(data[predict])
+
+x_train, y_train, x_test, y_test = sklearn.model_selection.train_test_split(x, y, test_size = 0.1)
