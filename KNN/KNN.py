@@ -42,4 +42,3 @@ for x in range(len(predicted)):
 	print("Predicted: ", names[predicted[x]], "Data: ", x_test[x], "Actual: ", names[y_test[x]])
 	n = model.kneighbors([x_test[x]], 7, True)
 	print("N:", n)
->>>>>>> 11bdc4515dd800a58da2e5f6d1e2c35b0994f95c
