@@ -11,3 +11,4 @@ x = cancer.data
 y = cancer.target
 
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x,y,test_size=0.2)
+
